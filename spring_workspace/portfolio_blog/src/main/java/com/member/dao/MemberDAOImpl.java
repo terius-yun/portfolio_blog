@@ -13,16 +13,18 @@ import com.member.vo.MemberVO;
 public class MemberDAOImpl implements MemberDAO {
 	
 	@Inject SqlSession sql;
-	// 회원가입
+	// �쉶�썝媛��엯
 
 	@Override
 	public void register(MemberVO vo) throws Exception {
 		sql.insert("memberMapper.register", vo);
 	}
 	
-	//로그인
+	//濡쒓렇�씤
 	@Override
 	public MemberVO login(MemberVO vo)throws Exception{
+		System.out.println("멤버DAO에서 vo 출력 : "+ vo);
+		System.out.println("멤버 DAO 출력 확인 : "+sql.selectOne("memberMapper.login", vo));
 		return sql.selectOne("memberMapper.login", vo);
 	}
 }

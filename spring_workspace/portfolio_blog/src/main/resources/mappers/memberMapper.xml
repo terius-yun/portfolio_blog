@@ -5,19 +5,19 @@
 <mapper namespace="memberMapper">
 	<!-- 게시판 글 작성 -->
 	<insert id="register">
-	    INSERT INTO JSP_MEMBER(   ID 
-	   					        , PASSWORD
-	   					        , NAME 	)
+	    INSERT INTO JSP_MEMBER(   USERID 
+	   					        , USERPASS
+	   					        , USERNAME 	)
 	                  VALUES(    #{userId} 
 	                 		   , #{userPass}
 	                 		   , #{userName})
     </insert>
     
     <!-- 로그인 -->
-    <select id="login" resultType="com.member.vo.MemberVO">
-    	SELECT ID, PASSWORD
+    <select id="login" resultType="com.member.vo.MemberVO" parameterType="com.member.vo.MemberVO">
+    	SELECT USERID, USERPASS
     		FROM JSP_MEMBER
-    	WHERE ID = #{userId}
-    		AND PASSWORD = #{userPass}
+    	WHERE USERID = #{userId}
+    		AND USERPASS = #{userPass}
     </select>
 </mapper>

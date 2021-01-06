@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.member.service.MemberService;
+import com.member.service.MemberServiceImpl;
 import com.member.vo.MemberVO;
 
 
@@ -24,13 +25,13 @@ public class MemberController {
 	@Inject
 	MemberService service;
 	
-	// 회원가입 get
+	//  회원가입get
 	@RequestMapping(value = "/register", method = RequestMethod.GET)
 	public void getRegister() throws Exception {
 		logger.info("get register");
 	}
 	
-	// 회원가입 post
+	//  회원가입post
 	@RequestMapping(value = "/register", method = RequestMethod.POST)
 	public String postRegister(MemberVO vo) throws Exception {
 		logger.info("post register");
@@ -47,6 +48,7 @@ public class MemberController {
 		System.out.println(vo);
 		HttpSession session = req.getSession();
 		MemberVO login = service.login(vo);
+		System.out.println("컨트롤러 출력 : "+login);
 		if(login == null) {
 			session.setAttribute("member", null);
 			rttr.addFlashAttribute("msg", false);
